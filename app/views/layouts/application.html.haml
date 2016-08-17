@@ -1,0 +1,26 @@
+!!!
+%html
+  %head
+    %meta{content: "text/html; charset=UTF-8",
+      "http-equiv": "Content-Type"}
+    %meta{name: "viewport",
+      content: "width=device-width, initial-scale=1"}
+    %title
+      - if content_for?(:title)
+        = yield(:title)
+      - else
+        Chatter
+    = csrf_meta_tags
+    = stylesheet_link_tag 'application',
+      media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application',
+      'data-turbolinks-track': 'reload'
+
+  %body{class: page_class}
+    = render "layouts/shared/nav_bar"
+    .container-fluid
+      .row
+        .col-md-6
+          - flash.each do |message_type, message|
+            = content_for :div, message, class:"alert alert-#{message_type}"
+      = yield
