@@ -1,0 +1,7 @@
+%ul.list-group
+  - current_user.rooms.each do |room|
+    %li.list-group-item
+      = link_to room.name, room
+      = link_to fa_icon("sign-out"), room_room_users_path(room),
+        method: :delete, class: "pull-right"
+

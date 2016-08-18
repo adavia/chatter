@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  has_many :room_users
+  has_many :rooms, through: :room_users
+  has_many :messages
+
   before_save { self.username = username.downcase self.email = email.downcase }
 
   validates :username, presence: true, length: { minimum: 6, maximum: 20 },

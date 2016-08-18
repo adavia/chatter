@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "users#index"
+  root "rooms#index"
 
   controller :sessions do
     get    "sign_in"  => :new
@@ -8,4 +8,7 @@ Rails.application.routes.draw do
   end
 
   resources :users
+  resources :rooms do
+    resource :room_users, only: [:create, :destroy]
+  end
 end

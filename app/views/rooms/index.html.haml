@@ -1,0 +1,13 @@
+.row
+  .col-md-2
+    = render "layouts/shared/side_bar"
+  .col-md-10
+    %h1.text-uppercase Select one room and start interacting with different people
+    - @rooms.each do |room|
+      .row
+        .col-md-8
+          .panel.panel-default
+            .panel-body
+              = link_to room_room_users_path(room), method: :post do
+                %h4.text-uppercase= room.name
+              = room.topic
