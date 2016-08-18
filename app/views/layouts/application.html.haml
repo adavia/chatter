@@ -20,7 +20,7 @@
     = render "layouts/shared/nav_bar"
     .container-fluid
       .row
-        .col-md-6
+        .col-md-6.pull-right
           - flash.each do |message_type, message|
-            = content_for :div, message, class:"alert alert-#{message_type}"
+            = content_tag :div, message, class:"alert alert-#{message_type} text-center"
       = yield

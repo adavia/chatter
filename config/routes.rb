@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   root "users#index"
 
-  resources :users
+  controller :sessions do
+    get    "sign_in"  => :new
+    post   "sign_in"  => :create
+    delete "sign_out" => :destroy
+  end
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :users
 end
