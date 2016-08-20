@@ -1,3 +1,17 @@
 // Place all the styles related to the rooms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.room-messages-wrapper {
+  height: 450px;
+  overflow: auto;
+  margin-top: 15px;
+  .media:not(:last-child) {
+    padding-bottom: 10px;
+    border-bottom: 1px dotted #ddd;
+  }
+}
+
+#room-form {
+  margin-top: 10px;
+}

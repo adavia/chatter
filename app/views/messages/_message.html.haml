@@ -1,0 +1,7 @@
+.media
+  .media-left
+    = link_to gravatar_for(message.user, size: 40), message.user
+  .media-body
+    %h4.media-heading
+      = message.user.username
+    = message.body

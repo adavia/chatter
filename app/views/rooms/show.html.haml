@@ -1,4 +1,28 @@
 .row
   .col-md-2
     = render "layouts/shared/side_bar"
-  .col-md-10
+  .col-md-6.col-md-offset-1
+    %h1.text-uppercase
+      = @room.name
+      %small
+        = @room.topic
+
+    .room-messages-wrapper{data: {behavior: "room-messages", "room-id": @room.id}}
+      = render @messages
+
+    #room-form
+      = simple_form_for [@room, Message.new] do |f|
+        = f.input :body, label: false, as: :string,
+          placeholder: "Say something new", autofocus: true
+
+  .col-md-3
+    .room-users-wrapper
+      %h1.text-uppercase Online Users
+      - @room.users.each do |user|
+        .jumbotron
+          .media
+            .media-left
+              = link_to gravatar_for(user, size: 30), user
+            .media-body
+              %h5.media-heading
+                = user.username
