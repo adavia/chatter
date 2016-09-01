@@ -6,6 +6,17 @@
     - @rooms.each do |room|
       .panel.panel-default
         .panel-body
-          = link_to room_room_users_path(room), remote: true, method: :post do
-            %h4.text-uppercase= room.name
-          = room.topic
+          - if current_user.rooms.include? room
+            %h4.text-uppercase
+              = room.name
+              %small already logged in
+            = link_to fa_icon("sign-out"), room_room_users_path(room),
+              data: {behavior: "room-leave-link", "room-id": room.id},
+              class: "pull-right"
+            = room.topic
+          - else
+            = link_to room_room_users_path(room), data: {behavior: "room-join-link",
+              "room-id": room.id} do
+              %h4.text-uppercase= room.name
+            = room.topic
+

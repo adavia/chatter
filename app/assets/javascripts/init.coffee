@@ -1,3 +1,3 @@
 $(document).on "turbolinks:load", ->
-  roomContainer = $(".room-messages-wrapper")
-  roomContainer.scrollTop(roomContainer.prop("scrollHeight"))
+  room = $(".room-messages-wrapper")
+  room.scrollTop(room.prop("scrollHeight"))

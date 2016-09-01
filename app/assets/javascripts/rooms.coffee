@@ -15,7 +15,28 @@ class Room
     else
       alert("Cannot send empty messages!")
 
+  send_action: (type, message) ->
+    $.ajax
+      url: @el.attr("href")
+      type: type
+      dataType: "JSON"
+      success: (data, textStatus, jqXHR) =>
+        Turbolinks.clearCache()
+        Turbolinks.visit(jqXHR.responseJSON.url, {"action":"replace"})
+      complete: (jqXHR, textStatus) =>
+        App.rooms.send_user_action(@el.data("room-id"), message)
+
 $(document).on "submit", "#new_message", (event) ->
   event.preventDefault()
   room = new Room @
   room.send_message()
+
+$(document).on "click", "[data-behavior='room-join-link']", (event) ->
+  event.preventDefault()
+  room = new Room @
+  room.send_action("POST", "has joined the room")
+
+$(document).on "click", "[data-behavior='room-leave-link']", (event) ->
+  event.preventDefault()
+  room = new Room @
+  room.send_action("DELETE", "has left the room")

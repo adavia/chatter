@@ -14,4 +14,9 @@ class RoomsChannel < ApplicationCable::Channel
     @room = Room.find(data["room_id"])
     @room.messages.create!(body: data["body"], user: current_user)
   end
+
+  def send_status_message(data)
+    @room = Room.find(data["room_id"])
+    @room.messages.create!(body: data["body"], user: current_user)
+  end
 end
