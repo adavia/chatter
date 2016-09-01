@@ -21,10 +21,10 @@ class Room
       type: type
       dataType: "JSON"
       success: (data, textStatus, jqXHR) =>
+        App.rooms.send_user_action(@el.data("room-id"), message)
+      complete: (jqXHR, textStatus) =>
         Turbolinks.clearCache()
         Turbolinks.visit(jqXHR.responseJSON.url, {"action":"replace"})
-      complete: (jqXHR, textStatus) =>
-        App.rooms.send_user_action(@el.data("room-id"), message)
 
 $(document).on "submit", "#new_message", (event) ->
   event.preventDefault()
