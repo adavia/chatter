@@ -6,7 +6,7 @@
     - @rooms.each do |room|
       .panel.panel-default
         .panel-body
-          - if current_user.rooms.include? room
+          - if current_user and current_user.rooms.include? room
             %h4.text-uppercase
               = room.name
               %small already logged in
