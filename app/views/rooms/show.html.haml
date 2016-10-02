@@ -18,7 +18,7 @@
   .col-md-3
     .room-users-wrapper
       %h1.text-uppercase Online Users
-      - @room.users.each do |user|
+      - (@room.users - [current_user]).each do |user|
         .jumbotron
           .media
             .media-left
